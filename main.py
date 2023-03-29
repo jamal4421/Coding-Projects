@@ -1,3 +1,5 @@
+# Boy and girl name generator
+
 print("Please select your gender")
 select_gender = str(input("Enter 'b' for a boy or 'g' for a girl: "))
 
@@ -54,9 +56,6 @@ def generate_names(gender):
                 print(f"Some name suggestions for the {gender} are: {result}")
         except ValueError:
             print("Input must be an interger")
-    
-    else:
-        print("Please input a valid gender")
 
 
 if select_gender.lower() == "b":
