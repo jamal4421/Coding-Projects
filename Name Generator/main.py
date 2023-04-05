@@ -1,76 +1,62 @@
 # Boy and girl name generator
 
-def generate_names(gender):
-    boy_names = ["Liam", "Noah", "Oliver", "James", 
-                 "William", "Benjamin", "Lucas", "Henry",
-                 "Theodore", "Jack", "Alexander", "Jackson", 
-                 "Daniel", "Michael", "Mason",
-                 "Sebastian", "Ethan", "Logan", "Owen", "Samuel", 
-                 "Jacob", "Aiden", "John", "Joseph"]
+# Function that returns boy names
+def generate_boy_names():
+    boy_names =  ["Liam", "Noah", "Oliver", "James", "William", 
+                  "Benjamin", "Lucas", "Henry","Theodore", "Jack", 
+                  "Alexander", "Jackson", "Daniel", "Michael", "Mason", 
+                  "Sebastian", "Ethan", "Logan", "Owen", "Samuel", 
+                  "Jacob", "Aiden", "John", "Joseph"]
+    return boy_names
 
+# Function that returns girl names
+def generate_girl_names():
     girl_names = ["Olivia", "Emma", "Charlotte", "Amelia", "Ava", 
                   "Sophia", "Isabella", "Mia", "Evelyn", "Harper",
                   "Luna", "Camila", "Gianna", "Elizabeth", "Eleanor", 
                   "Ella", "Abigail", "Sofia", "Avery", "Scarlett"]
+    return girl_names
 
-    max_boy_name_letter = len(max(boy_names, key=len))
-    min_boy_name_letter = len(min(boy_names, key=len))
-
-    max_girl_name_letter = len(max(girl_names, key=len))
-    min_girl_name_letter = len(min(girl_names, key=len))
-
-    list = []
-    
+# Function that asks for the user's input
+def get_num_letters(gender, min_len, max_len):
+    # While loop which asks the user for the input until it's within the conditions
     while True:
-        if gender == "boy":
-            
-            try:
-                num_letter = int(input(f"How many letters would you prefer to have in the boy's name? (Must be between {min_boy_name_letter} and {max_boy_name_letter}) "))
-                if num_letter < min_boy_name_letter:
-                    print("Invalid Integer")
-                    num_letter
-                elif num_letter > max_boy_name_letter:
-                    print(f"Invalid Integer")
-                    num_letter
-                elif min_boy_name_letter <= num_letter <= max_boy_name_letter:
-                    for boy_name in boy_names:
-                        if len(boy_name) == num_letter:
-                            list.append(boy_name)
-                    result = ", ".join(list)
-                    
-                    print(f"Some name suggestions for {gender} are: {result}")
-                    break
-        
-            except ValueError:
-                print("Input must be an integer")
-                num_letter
+        try:
+            # Variable which asks for the numbers of letters in the name
+            num_letters = int(input(f"How many letters do you want for the {gender}'s name? (Must be between {min_len} and {max_len}): "))
+            if num_letters < min_len or num_letters > max_len:
+                print("Invalid input")
+            else:
+                # Stores the input in a variable and returns it
+                return num_letters
+        except ValueError:
+            print("Input must be an integer")
 
-        elif gender == "girl":
-            
-            try:
-                num_letter = int(input(f"How many letters do you want for the girl's name to be? (Must be between {min_girl_name_letter} and {max_girl_name_letter}) "))
-                if num_letter < min_girl_name_letter:
-                    print("Invalid Integer")
-                    num_letter
-                elif num_letter > max_girl_name_letter:
-                    print("Invalid Integer")
-                    num_letter
-                elif min_girl_name_letter <= num_letter <= max_girl_name_letter:
-                    for girl_name in girl_names:
-                        if len(girl_name) == num_letter:
-                            list.append(girl_name)
-                        result = ", ".join(list)
-                    print(f"Some name suggestions for {gender} are: {result}")
-                    break
-                
-            except ValueError:
-                print("Input must be an integer")
-                num_letter
+# Function that generates the names based on the user's inputs
+def generate_names(gender):
+    if gender == "boy":
+        names = generate_boy_names()
+        gender_text = "boy"
+    else:
+        names = generate_girl_names()
+        gender_text = "girl"
 
+    min_len = len(min(names, key=len))
+    max_len = len(max(names, key=len))
 
+    num_letters = get_num_letters(gender_text, min_len, max_len)
+
+    suggestions = [name for name in names if len(name) == num_letters]
+
+    print(f"Some name suggestions for {gender_text} are: {', '.join(suggestions)}")
+
+# Executing the functions
 print("Please select your gender")
+# While loop which asks for user's input until it's within the conditions
 while True:
-    select_gender = str(input("Enter 'b' for a boy or 'g' for a girl: "))
+    # Input function which asks the user to select between 2 genders then stores in a variable
+    select_gender = input("Enter 'b' for a boy or 'g' for a girl: ")
+    # The while loop is then stopped if user input the correct letter
     if select_gender.lower() == "b":
         generate_names("boy")
         break
@@ -79,4 +65,3 @@ while True:
         break
     else:
         print("Please input a valid letter")
-        select_gender
