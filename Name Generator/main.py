@@ -3,7 +3,7 @@
 # Function that returns boy names
 def generate_boy_names():
     boy_names = ["Liam", "Noah", "Oliver", "James", "William",
-                  "Benjamin", "Lucas", "Henry","Theodore", "Jack",
+                  "Benjamin", "Lucas", "Henry", "Theodore", "Jack",
                   "Alexander", "Jackson", "Daniel", "Michael", "Mason", 
                   "Sebastian", "Ethan", "Logan", "Owen", "Samuel", 
                   "Jacob", "Aiden", "John", "Joseph"]
@@ -34,11 +34,11 @@ def get_num_letters(gender, min_len, max_len):
 
 # Function that generates the names based on the user's inputs
 def generate_names(gender):
-    # If gender is boy, the generate_boy_names function is called, it then return the list of boy names and store it in variable called names
+    # If gender is boy, the generate_boy_names function is called, it then returns the list of boy names and stores it in variable called names
     if gender == "boy":
         names = generate_boy_names()
         gender_text = "boy"
-    # Otherwise, the generate_girl_names function is called, it then return the list of girl names and store it in variable called names
+    # Otherwise, the generate_girl_names function is called, it then returns the list of girl names and stores it in variable called names
     else:
         names = generate_girl_names()
         gender_text = "girl"
@@ -47,13 +47,13 @@ def generate_names(gender):
     min_len = len(min(names, key=len))
     max_len = len(max(names, key=len))
 
-    # get_num_letters is called with the required parameters then stores the number of letters that the user wants as an integer in the num_letters variable
+    # get_num_letters is called with the required parameters, then stores the number of letters that the user wants as an integer in the num_letters variable
     num_letters = get_num_letters(gender_text, min_len, max_len)
 
-    # The suggested names which fulfills the user's requirements are store in the the list suggestions
+    # The suggested names which fulfill the user's requirements are stored in the list suggestions
     suggestions = [name for name in names if len(name) == num_letters]
 
-    # The program then prints the list of names which meets the criteria then which is separated by commas
+    # The program then prints the list of names that meets the criteria then which is separated by commas
     print(f"Some name suggestions for {gender_text} are: {', '.join(suggestions)}")
 
 # Executing the functions
