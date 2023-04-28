@@ -71,6 +71,6 @@ while True:
     elif select_gender.lower() == "g":
         generate_names("girl")
         break
-     # The while loop is then stopped if user input the correct letter
+     # The while loop is then stopped if user inputs the correct letter
     else:
         print("Please input a valid letter")
